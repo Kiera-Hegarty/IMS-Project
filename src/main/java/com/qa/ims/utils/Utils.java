@@ -51,5 +51,21 @@ public class Utils {
 		} while (doubleInput == null);
 		return doubleInput;
 	}
+	
+	//Integer added
+	
+	public int getInt() {
+		String input = null;
+		int intInput = 0;
+		do {
+			try {
+				input = getString();
+				intInput = Integer.parseInt(input);
+			} catch (NumberFormatException nfe) {
+				LOGGER.info("Error - Please enter a number");
+			}
+		} while (intInput == 0);
+		return intInput;
+	}
 
 }
