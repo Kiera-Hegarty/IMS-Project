@@ -1,4 +1,6 @@
-Coverage: 34%
+Jira board link - https://kiera-hegarty.atlassian.net/jira/software/projects/KH/boards/3
+
+Coverage: 56.4%
 # Project Title
 
 One Paragraph of project description goes here
