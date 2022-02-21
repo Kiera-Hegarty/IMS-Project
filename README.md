@@ -1,9 +1,15 @@
 Jira board link - https://kiera-hegarty.atlassian.net/jira/software/projects/KH/boards/3
 
-Coverage: 56.4%
+Coverage: 64.5%
 # Project Title
 
-One Paragraph of project description goes here
+The aim of this project is to create an inventory management system by using:
+**Java**
+**Maven**
+**JUnit**
+**Mockito**
+**MySQL**
+**Jira**
 
 ## Getting Started
 
@@ -11,57 +17,66 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+Software Installations for this project:
 
 ```
-Give examples
+MySQL: https://dev.mysql.com/downloads/windows/installer/8.0.html
+Java: https://www.oracle.com/java/technologies/javase/jdk14-archive-downloads.html
+Eclipse: https://www.eclipse.org/downloads/
+Maven: https://maven.apache.org/download.cgi?Preferred=ftp://ftp.osuosl.org/pub/apache/
 ```
 
 ### Installing
+A step by step series of examples that tell you how to get a development env running;
 
-A step by step series of examples that tell you how to get a development env running
+First, install and set up all software.
 
-Say what the step will be
+Then open MySQL Workbench to create a database. Select the local database instance to enter credentials.
+In the query section make a database called `ims`;
+CREATE DATABASE `ims`.
 
-```
-Give the example
-```
+To run the IMS system go to the directory where the pom.xml file is located;
+Run command: mvn clean package
+This will create a directory 'target' which will contain a jar file.
+Run the jar file by navigating to target file and running the following command:
+java -jar ims-jar-with-dependencies.jar
 
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
 
 ## Running the tests
 
-Explain how to run the automated tests for this system. Break down into which tests and what they do
 
 ### Unit Tests 
 
-Explain what these tests test, why and how to run them
+Mockito 
 
 ```
-Give an example
+	@Test
+	public void itemTestCreate() {
+		final String I_NAME = "The Giver";
+		final int STOCK = 25, PRICE = 10;
+		final Item created = new Item(I_NAME, STOCK, PRICE);
+
+		Mockito.when(utils.getString()).thenReturn(I_NAME);
+		Mockito.when(utils.getInt()).thenReturn(STOCK, PRICE);
+		Mockito.when(dao.create(created)).thenReturn(created);
+		assertEquals(created, controller.create());
+		Mockito.verify(utils, Mockito.times(1)).getString();
+		Mockito.verify(utils, Mockito.times(2)).getInt();
+		Mockito.verify(dao, Mockito.times(1)).create(created);
+	}
 ```
 
 ### Integration Tests 
-Explain what these tests test, why and how to run them
+JUnit
 
 ```
-Give an example
+	@Test
+	public void itemTestUpdate() {
+		final Item updated = new Item(1L,"Hunger Games", 35, 10);
+		assertEquals(updated, DAO.update(updated));
+	}
+	
 ```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
 ## Deployment
 
 Add additional notes about how to deploy this on a live system
@@ -77,6 +92,7 @@ We use [SemVer](http://semver.org/) for versioning.
 ## Authors
 
 * **Chris Perrins** - *Initial work* - [christophperrins](https://github.com/christophperrins)
+* **Kiera Hegarty** - *Continued to build on intital work* - [Kiera-Hegarty](https://github.com/Kiera-Hegarty)
 
 ## License
 
@@ -86,6 +102,4 @@ This project is licensed under the MIT license - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+**Chris Perrins** who created the inital project
