@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `ims`.`orders` (
     `date_placed` DATE DEFAULT NULL,
     `total_cost` INT DEFAULT NULL,
     PRIMARY KEY (`order_id`),
-    CONSTRAINT `FK_customerId_1` FOREIGN KEY (`customer_id`) REFERENCES `customers`(`id`) ON DELETE CASCADE
+	FOREIGN KEY (`customer_id`) REFERENCES `customers`(`id`) 
 );
 
 -- DESCRIBE orders;
@@ -33,7 +33,6 @@ CREATE TABLE IF NOT EXISTS `ims`.`order_details` (
     `order_id` INT DEFAULT NULL,
     PRIMARY KEY (`order_details_id`),
     FOREIGN KEY (`item_id`) REFERENCES `ims`.`items`(`item_id`),
-    FOREIGN KEY (`order_id`) REFERENCES `ims`.`orders`(`order_id`),
-    CONSTRAINT `FK_itemId_1` FOREIGN KEY (`item_id`) REFERENCES `items`(`id`) ON DELETE CASCADE,
-    CONSTRAINT `FK_orderId_1` FOREIGN KEY (`order_id`) REFERENCES `orders`(`id`) ON DELETE CASCADE
+    FOREIGN KEY (`order_id`) REFERENCES `ims`.`orders`(`order_id`)
+
 );
