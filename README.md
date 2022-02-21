@@ -2,7 +2,8 @@ Jira board link - https://kiera-hegarty.atlassian.net/jira/software/projects/KH/
 
 Coverage: 64.5%
 
-Project Title
+**IMS Project**
+
 The aim of this project is to create an inventory management system by using: 
 **Java 
 Maven 
