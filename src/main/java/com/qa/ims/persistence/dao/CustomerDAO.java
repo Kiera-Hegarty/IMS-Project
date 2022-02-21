@@ -20,11 +20,11 @@ public class CustomerDAO implements Dao<Customer> {
 
 	@Override
 	public Customer modelFromResultSet(ResultSet resultSet) throws SQLException {
-		Long id = resultSet.getLong("id");
+		Long id = resultSet.getLong("customer_id");
 		String firstName = resultSet.getString("first_name");
 		String surname = resultSet.getString("surname");
 		return new Customer(id, firstName, surname);
-	}
+	} 
 
 	/**
 	 * Reads all customers from the database
@@ -85,7 +85,7 @@ public class CustomerDAO implements Dao<Customer> {
 	@Override
 	public Customer read(Long id) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
-				PreparedStatement statement = connection.prepareStatement("SELECT * FROM customers WHERE id = ?");) {
+				PreparedStatement statement = connection.prepareStatement("SELECT * FROM customers WHERE customer_id = ?");) {
 			statement.setLong(1, id);
 			try (ResultSet resultSet = statement.executeQuery();) {
 				resultSet.next();
@@ -109,7 +109,7 @@ public class CustomerDAO implements Dao<Customer> {
 	public Customer update(Customer customer) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection
-						.prepareStatement("UPDATE customers SET first_name = ?, surname = ? WHERE id = ?");) {
+						.prepareStatement("UPDATE customers SET first_name = ?, surname = ? WHERE customer_id = ?");) {
 			statement.setString(1, customer.getFirstName());
 			statement.setString(2, customer.getSurname());
 			statement.setLong(3, customer.getId());
@@ -130,7 +130,7 @@ public class CustomerDAO implements Dao<Customer> {
 	@Override
 	public int delete(long id) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
-				PreparedStatement statement = connection.prepareStatement("DELETE FROM customers WHERE id = ?");) {
+				PreparedStatement statement = connection.prepareStatement("DELETE FROM customers WHERE customer_id = ?");) {
 			statement.setLong(1, id);
 			return statement.executeUpdate();
 		} catch (Exception e) {
