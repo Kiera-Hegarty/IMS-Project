@@ -34,6 +34,16 @@ To run the IMS system go to the directory where the pom.xml file is located; Run
 
 **Running the tests**
 
+**Integration Tests**
+
+JUnit
+
+	@Test
+	public void itemTestUpdate() {
+		final Item updated = new Item(1L,"Hunger Games", 35, 10);
+		assertEquals(updated, DAO.update(updated));
+	}
+	
 **Unit Tests**
 
 Mockito
@@ -53,15 +63,6 @@ Mockito
 		Mockito.verify(dao, Mockito.times(1)).create(created);
 	}
 	
-**Integration Tests**
-
-JUnit
-
-	@Test
-	public void itemTestUpdate() {
-		final Item updated = new Item(1L,"Hunger Games", 35, 10);
-		assertEquals(updated, DAO.update(updated));
-	}
 	
 **Deployment**
 CRUD functions work. However, cannot add individual items to to order (attempted code commented at bottom of OrderControllers class).
